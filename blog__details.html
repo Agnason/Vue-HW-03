@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- header -->
+    <div class="header center">
+        <div class="header_logo">
+            <img src="img/Logo.svg" alt="Logo">
+            <a href="#">Interno</a>
+        </div>
+        <div class="header_menubar">
+            <a href="#">Home</a>
+            <a href="#">Project</a>
+            <a href="#">Blog</a>
+
+        </div>
+    </div>
+
+    <div class="banner">
+        <img class="banner__blog-img" src="img/Banner_blog_details.jpg" alt="Banner_blog_details">
+    </div>
+
+    <!-- blog-detatils -->
+
+    <div id="app" class="blog-details center">
+        <div class="blog-details__info">
+            <component :is="changeTabs"></component>
+
+        </div>
+
+        <div class="blog-details__tags">
+            <h2 class="blog-details__tags__heading textAlignLeft">Tags</h2>
+
+
+            <div class="blog-details__tags__buttons">
+
+                <button class="blog-details__tags__buttons__btn" @click="currentTab=nameButton" v-for="nameButton in nameButtons" :key="nameButton.id">
+                    {{ nameButton }}
+                </button>
+            </div>
+        </div>
+
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.7.8"></script>
+
+    <script src="blogDetailsVue.js"></script>
+    <script>
+        new Vue({
+            el: "#app",
+            data: {
+                nameButtons: ['Kitchen', 'Bedroom', 'Building', 'Architecture', 'Kitchen Planning', 'Bedroom'],
+                currentTab: 'Kitchen'
+            },
+            computed: {
+                changeTabs() {
+                    return `change-${this.currentTab}`;
+                }
+            },
+        });
+
+    </script>
+
+
+</body>
+
+</html>
